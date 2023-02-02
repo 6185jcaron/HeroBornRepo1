@@ -16,24 +16,24 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
-    
-        //1
-        void onTriggerEnter(Collider other)
+
+    //1
+    void OnTriggerEnter(Collider other)
+    {
+        //2
+        if (other.name == "Player")
         {
-            //2
-            if (other.name == "Player")
-            {
-                Debug.Log("Player detected - Attack!");
-            }
+            Debug.Log("Player detected - Attack!");
         }
-        //3
-        void OnTriggerExit(Collider other)
+    }
+    //3
+    void OnTriggerExit(Collider other)
+    {
+        //4
+        if (other.name == "Player")
         {
-            //4
-            if (other.name == "Player")
-            {
-                Debug.Log("Player out of range, resume patrol");
-            }
+            Debug.Log("Player out of range, resume patrol");
         }
+    }
     
 }
