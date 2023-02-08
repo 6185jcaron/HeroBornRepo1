@@ -47,38 +47,40 @@ public class PlayerBehavior : MonoBehaviour
     //1
     void FixedUpdate()
     {
-        if(IsGrounded() && hInput.GetKeyDown(KeyCode.Space))
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             _rb.AddForce(Vector3.up * jumpVelocity,
                 ForceMode.Impulse);
-        
-        
-          
-            }
-
         }
-    private bool IsGrounded()
-    {
-        Vector3 capsuleBottom = new Vector3(_col.Blunds.center.x,
-            _col.bounds, min.y,
-            _col.bounds.center.z);
-        bool grounded = Physics.CheckCapsule(_col.bounds.center,
-            capsulebotttom, distanceToGround, groundlayer,
-            QueryTriggerInteractions.Ignore);
-        return grounded;
-        //2
+            
+                //2
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //3
+                    //3
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
         }
-        //2
+                //2
         Vector3 rotation = Vector3.up * hInput;
-        //3
+                //3
         Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
-        //4
+                //4
         _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
-        //5
+                //5
         _rb.MoveRotation(_rb.rotation * angleRot);
+            
+
+        
+
     }
+    private bool IsGrounded()
+    {
+        Vector3 capsuleBottom = new Vector3(_col.bounds.center.x,
+            _col.bounds.min.y,
+            _col.bounds.center.z);
+        bool grounded = Physics.CheckCapsule(_col.bounds.center,
+            capsuleBottom, distanceToGround, groundlayer,
+            QueryTriggerInteraction.Ignore);
+        return grounded;
+    }
+
 }
