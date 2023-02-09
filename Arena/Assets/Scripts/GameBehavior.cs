@@ -41,7 +41,7 @@ public class GameBehavior : MonoBehaviour
             Debug.LogFormat("Lives:{0}", _playerHP);
         }
     }
-    void onGUI()
+    void OnGUI()
     {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health:" + _playerHP);
         GUI.Box(new Rect(20, 50, 150, 25), "Items Collected: " + _itemsCollected);
