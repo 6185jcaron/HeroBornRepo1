@@ -12,6 +12,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public float distanceToGround = 0.1f;
     public LayerMask groundlayer;
+    public GameObject bullet;
+    public float bulletSpeed = 100f;
 
 
     //2
@@ -67,6 +69,16 @@ public class PlayerBehavior : MonoBehaviour
         _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
                 //5
         _rb.MoveRotation(_rb.rotation * angleRot);
+        if (Input.GetMouseButtonDown(0))
+    {
+        GameObject newBullet = Instantiate(bullet,
+            this.transform.position + new Vector3(1, 0, 0),
+            this.transform.rotation) as GameObject;
+        Rigidbody bulletRB =
+            newBullet.GetComponent<Rigidbody>();
+        bulletRB.velocity = this.transform.forward *
+            bulletSpeed;
+    }
             
 
         
