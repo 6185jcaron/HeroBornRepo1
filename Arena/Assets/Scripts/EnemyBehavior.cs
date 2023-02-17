@@ -5,9 +5,18 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Transform patrolRoute;
+    public List<Transform> Locations;
     void Start()
     {
-        
+        InitializePatrolRoute();
+    }
+    void InitializePatrolRoute()
+    {
+        foreach(Transform child in patrolRoute)
+        {
+            Locations.Add(child);
+        }
     }
 
     // Update is called once per frame
