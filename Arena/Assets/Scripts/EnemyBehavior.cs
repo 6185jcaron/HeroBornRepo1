@@ -28,9 +28,10 @@ public class EnemyBehavior : MonoBehaviour
     }
     void Start()
     {
-        InitializePatrolRoute();
-        agent = GetComponent <NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player").transform;
+        InitializePatrolRoute();
+
         MoveToNextPatrolLocation();
     }
     void InitializePatrolRoute()
@@ -44,7 +45,9 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (Locations.Count == 0)
             return;
+        agent.destination = Locations[locationIndex].position;
         locationIndex = (locationIndex + 1) % Locations.Count;
+        
     }
 
     // Update is called once per frame
