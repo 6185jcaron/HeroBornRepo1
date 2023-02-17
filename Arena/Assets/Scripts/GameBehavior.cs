@@ -53,6 +53,11 @@ public class GameBehavior : MonoBehaviour
             }
         }
     }
+    void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0f;
+    }
     void OnGUI()
     {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health:" + _playerHP);
