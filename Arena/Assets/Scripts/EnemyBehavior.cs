@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform patrolRoute;
     public List<Transform> Locations;
+    private int locationIndex = 0;
+    private NavMeshAgent agent;
     void Start()
     {
         InitializePatrolRoute();
+        agent = GetComponent <NavMeshAgent>();
+        MoveToNextPatrolLocation();
     }
     void InitializePatrolRoute()
     {
@@ -17,6 +22,10 @@ public class EnemyBehavior : MonoBehaviour
         {
             Locations.Add(child);
         }
+    }
+    void MoveToNextPatrolLocation()
+    {
+        agent.destination = Locations[locationIndex].position;
     }
 
     // Update is called once per frame
