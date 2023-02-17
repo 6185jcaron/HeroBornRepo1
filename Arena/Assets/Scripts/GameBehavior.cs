@@ -69,9 +69,10 @@ public class GameBehavior : MonoBehaviour
         }
         if (showLossScreen)
         {
-            if (OnGUI().Button(newRect(Screen.width / 2 - 50, 200, 100), "You lose..."))
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lose..."))
             {
-
+                SceneManager.LoadScene(0);
+                Time.timeScale = 1.0f;
             } 
         } 
     }
