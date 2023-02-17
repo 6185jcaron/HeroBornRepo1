@@ -11,6 +11,21 @@ public class EnemyBehavior : MonoBehaviour
     private int locationIndex = 0;
     private NavMeshAgent agent;
     public Transform player;
+    private int _lives = 3;
+    public int EnemyLives
+    {
+        get { return _lives; }
+        private set
+        {
+            _lives = value;
+            if (_lives <= 0)
+            {
+                Destroy(this.gameObject);
+                Debug.Log("Enemy down.");
+            }
+        }
+
+    }
     void Start()
     {
         InitializePatrolRoute();
