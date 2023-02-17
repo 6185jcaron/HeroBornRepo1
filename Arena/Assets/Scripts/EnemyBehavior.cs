@@ -76,5 +76,14 @@ public class EnemyBehavior : MonoBehaviour
             Debug.Log("Player out of range, resume patrol");
         }
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "Bullet (clone)")
+        {
+            EnemyLives -= 1;
+            Debug.Log("Critical hit!");
+        }
+       
+    }
     
 }

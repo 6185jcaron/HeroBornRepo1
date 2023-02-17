@@ -10,6 +10,7 @@ public class GameBehavior : MonoBehaviour
     public bool showWinScreen = false;
 
     private int _itemsCollected = 0;
+    public bool showLossScreen = false;
     public int Items
     {
         get { return _itemsCollected; }
@@ -39,6 +40,17 @@ public class GameBehavior : MonoBehaviour
         {
             _playerHP = value;
             Debug.LogFormat("Lives:{0}", _playerHP);
+
+            if (_playerHP <= 0)
+            {
+                labelText = "You want another life with that?";
+                showLossScreen = true;
+                Time.timeScale = 0;
+            }
+            else
+            {
+                labelText = "Ouch... that's got to hurt";
+            }
         }
     }
     void OnGUI()
@@ -55,7 +67,13 @@ public class GameBehavior : MonoBehaviour
             }
 
         }
-       
+        if (showLossScreen)
+        {
+            if (OnGUI().Button(newRect(Screen.width / 2 - 50, 200, 100), "You lose..."))
+            {
+
+            } 
+        } 
     }
     // Start is called before the first frame update
     void Start()
