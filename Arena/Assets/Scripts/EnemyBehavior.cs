@@ -25,13 +25,18 @@ public class EnemyBehavior : MonoBehaviour
     }
     void MoveToNextPatrolLocation()
     {
-        agent.destination = Locations[locationIndex].position;
+        if (Locations.Count == 0)
+            return;
+        locationIndex = (locationIndex + 1) % Locations.Count;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (agent.remainingDistance < 0.2f && !agent.pathPending)
+        {
+            MoveToNextPatrolLocation();
+        }
     }
 
 
