@@ -65,6 +65,7 @@ public int Items
     public void Initialize()
     {
         _state = "Manager initialized..";
+        _state.FancyDebug();
         Debug.Log(_state);
     }
 
