@@ -12,4 +12,11 @@ public static class Utilities
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
     }
+    public static bool Restartlevel(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+        Time.timeScale = 1.0f;
+        return true;
+    }
 }
+
