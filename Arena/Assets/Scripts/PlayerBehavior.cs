@@ -46,23 +46,29 @@ public class PlayerBehavior : MonoBehaviour
         
         this.transform.Rotate(Vector3.up * hInput * Time.deltaTime);
         */
-
+        //2
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //3
+            _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject newBullet = Instantiate(bullet,
+                this.transform.position + new Vector3(1, 0, 0),
+                this.transform.rotation) as GameObject;
+            Rigidbody bulletRB =
+                newBullet.GetComponent<Rigidbody>();
+            bulletRB.velocity = this.transform.forward *
+                bulletSpeed;
+        }
     }
     //1
     void FixedUpdate()
     {
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
-        {
-            _rb.AddForce(Vector3.up * jumpVelocity,
-                ForceMode.Impulse);
-        }
+        
             
-                //2
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-                    //3
-            _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
-        }
+
                 //2
         Vector3 rotation = Vector3.up * hInput;
                 //3
@@ -71,16 +77,7 @@ public class PlayerBehavior : MonoBehaviour
         _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
                 //5
         _rb.MoveRotation(_rb.rotation * angleRot);
-        if (Input.GetMouseButtonDown(0))
-    {
-        GameObject newBullet = Instantiate(bullet,
-            this.transform.position + new Vector3(1, 0, 0),
-            this.transform.rotation) as GameObject;
-        Rigidbody bulletRB =
-            newBullet.GetComponent<Rigidbody>();
-        bulletRB.velocity = this.transform.forward *
-            bulletSpeed;
-    }
+       
             
 
         
