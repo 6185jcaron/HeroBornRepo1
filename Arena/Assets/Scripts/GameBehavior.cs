@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CustomExtensions;
 
 using UnityEngine.SceneManagement;
-public class GameBehavior : MonoBehaviour
+public class GameBehavior : MonoBehaviour, IManager
 {
     public string labelText = "Collect all 4 items and win your freedom!";
     public int maxItems = 4;
@@ -11,7 +12,15 @@ public class GameBehavior : MonoBehaviour
 
     private int _itemsCollected = 0;
     public bool showLossScreen = false;
-    public int Items
+     
+    private string _state;
+    public string State
+    {
+        get { return _state; }
+        set { _state = value; }
+    }
+
+public int Items
     {
         get { return _itemsCollected; }
         set
@@ -53,6 +62,12 @@ public class GameBehavior : MonoBehaviour
             }
         }
     }
+    public void Initialize()
+    {
+        _state = "Manager initialized..";
+        Debug.Log(_state);
+    }
+
     void OnGUI()
     {
         GUI.Box(new Rect(20, 20, 150, 25), "Player Health:" + _playerHP);
@@ -62,7 +77,7 @@ public class GameBehavior : MonoBehaviour
         {
             if (GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/2 - 50, 200, 100), "YOU WON!"))
             {
-                Utilities.RestartLevel(0);
+                Utilities.RestartLevel();
             }
 
         }
@@ -77,7 +92,7 @@ public class GameBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Initialize();
     }
 
     // Update is called once per frame
