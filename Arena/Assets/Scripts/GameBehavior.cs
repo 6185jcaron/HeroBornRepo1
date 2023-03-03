@@ -77,10 +77,15 @@ public int Items
         lootStack.Push("Winged Boot");
         lootStack.Push("MythrilBracer");
         debug(_state);
+        LogWithDelegate(debug);
     }
     public static void Print(string newText)
     {
         Debug.Log(newText);
+    }
+    public void LogWithDelegate(DebugDelegate del)
+    {
+        del("Delegating the debug task...");
     }
 
     void OnGUI()
