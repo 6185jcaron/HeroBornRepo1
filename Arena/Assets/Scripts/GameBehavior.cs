@@ -6,6 +6,8 @@ using CustomExtensions;
 using UnityEngine.SceneManagement;
 public class GameBehavior : MonoBehaviour, IManager
 {
+    public delegate void DebugDelegate(string newText);
+    public DebugDelegate debug = Print;
     public string labelText = "Collect all 4 items and win your freedom!";
     public int maxItems = 4;
     public bool showWinScreen = false;
@@ -74,6 +76,11 @@ public int Items
         lootStack.Push("Golden Key");
         lootStack.Push("Winged Boot");
         lootStack.Push("MythrilBracer");
+        debug(_state);
+    }
+    public static void Print(string newText)
+    {
+        Debug.Log(newText);
     }
 
     void OnGUI()
