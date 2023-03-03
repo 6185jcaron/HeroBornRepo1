@@ -35,6 +35,7 @@ public class PlayerBehavior : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameBehavior>();
 
     }
+ 
 
     // Update is called once per frame
     void Update()
@@ -49,7 +50,7 @@ public class PlayerBehavior : MonoBehaviour
         this.transform.Rotate(Vector3.up * hInput * Time.deltaTime);
         */
         //2
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             //3
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
@@ -79,7 +80,7 @@ public class PlayerBehavior : MonoBehaviour
         _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
                 //5
         _rb.MoveRotation(_rb.rotation * angleRot);
-        playerJump();
+        
        
             
 
