@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryList<T>
 {
     private T _item;
-    private T item
+    public T item
     {
         get { return _item;  }
     }

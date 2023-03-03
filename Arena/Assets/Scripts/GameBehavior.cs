@@ -102,6 +102,8 @@ public int Items
     {
         Initialize();
         InventoryList<string> inventoryList = new InventoryList<string>();
+        inventoryList.SetItem("Potion");
+        Debug.Log(inventoryList.item);
     }
 
     // Update is called once per frame
