@@ -25,6 +25,8 @@ public class PlayerBehavior : MonoBehaviour
 
     private CapsuleCollider _col;
 
+    public delegate void JumpingEvent();
+    public event JumpingEvent playerJump;
     void Start()
     {
         //3
@@ -77,6 +79,7 @@ public class PlayerBehavior : MonoBehaviour
         _rb.MovePosition(this.transform.position + this.transform.forward * vInput * Time.fixedDeltaTime);
                 //5
         _rb.MoveRotation(_rb.rotation * angleRot);
+        playerJump();
        
             
 
