@@ -62,11 +62,18 @@ public int Items
             }
         }
     }
+    public Stack<string> lootStack = new Stack<string>();
+
     public void Initialize()
     {
         _state = "Manager initialized..";
         _state.FancyDebug();
         Debug.Log(_state);
+        lootStack.Push("Sword of Doom");
+        lootStack.Push("HP+");
+        lootStack.Push("Golden Key");
+        lootStack.Push("Winged Boot");
+        lootStack.Push("MythrilBracer");
     }
 
     void OnGUI()
@@ -94,11 +101,18 @@ public int Items
     void Start()
     {
         Initialize();
+        InventoryList<string> inventoryList = new InventoryList<string>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void PrintLootReport()
+    {
+        var currentItem = lootStack.Pop();
+        var nextItem = lootStack.Peek();
+        Debug.LogFormat("There are {0} random loot items waiting for you!", lootStack.Count);
     }
 }
