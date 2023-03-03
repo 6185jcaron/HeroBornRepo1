@@ -78,6 +78,13 @@ public int Items
         lootStack.Push("MythrilBracer");
         debug(_state);
         LogWithDelegate(debug);
+        GameObject player = GameObject.Find("Player");
+        PlayerBehavior playerBehavior = player.GetComponent <PlayerBehavior>();
+        playerBehavior.playerJump += HandlePlayerJump;
+    }
+    public void HandlePlayerJump()
+    {
+
     }
     public static void Print(string newText)
     {
@@ -97,7 +104,7 @@ public int Items
         {
             if (GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/2 - 50, 200, 100), "YOU WON!"))
             {
-                Utilities.RestartLevel();
+                Utilities.RestartLevel(0);
             }
 
         }
@@ -105,8 +112,23 @@ public int Items
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 50, 200, 100), "You lose..."))
             {
-                Utilities.RestartLevel();
+                try
+                {
+                    Utilities.RestartLevel(-1);
+                    debug("Level restarted succesfully...");
+                }
+                catch (System.ArgumentException e)
+                {
+                    Utilities.RestartLevel(0);
+                    debug("Reverting to scene 0: " + e.ToString());
+                }
+                finally
+                {
+                    debug("Restart handled");
+
+                }
             } 
+
         } 
     }
     // Start is called before the first frame update

@@ -12,7 +12,7 @@ public static class Utilities
         countReference += 1;
         return "Next time you'll be at number " + countReference;
     }
-    public static void RestartLevel()
+    public static void RestartLevel(int sceneIndex)
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1.0f;
@@ -22,6 +22,10 @@ public static class Utilities
     }
     public static bool Restartlevel(int sceneIndex)
     {
+        if (sceneIndex < 0)
+        {
+            throw new System.ArgumentException("Scene index cannot be negative");
+        }
         SceneManager.LoadScene(sceneIndex);
         Time.timeScale = 1.0f;
         return true;

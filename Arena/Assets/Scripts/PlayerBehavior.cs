@@ -54,6 +54,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             //3
             _rb.AddForce(Vector3.up * jumpVelocity, ForceMode.Impulse);
+            playerJump();
         }
         if (Input.GetMouseButtonDown(0))
         {
